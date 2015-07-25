@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
 	name = 'django-test-utils',
-	packages = ['django-test-utils'],
+	packages = ['test_utils'],
 	version = '0.1',
 	description = 'Library to provide support for testing multiple database system like Mongo, Redis, Neo4j along with django',
 	author = 'Hakampreet Singh Pandher',
@@ -15,8 +15,9 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Topic :: Software Development :: Testing',
     ],
 )
