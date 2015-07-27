@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
 	name = 'django-test-addons',
 	packages = ['test_addons'],
-	version = '0.2',
+	version = '0.3',
 	description = 'Library to provide support for testing multiple database system like Mongo, Redis, Neo4j along with django.',
 	author = 'Hakampreet Singh Pandher',
 	author_email = 'hspandher@outlook.com',
