@@ -13,11 +13,11 @@ setup(
     install_requires = [
         'django>1.6'
     ],
-    extras_require = [
+    extras_require = {
         'mongo_testing': ['mongoengine>0.8.7'],
         'redis_testing': ['django-redis>3.8.2'],
         'neo4j_testing': ['py2neo>2.0.6'],
-    ],
+    },
 	classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
