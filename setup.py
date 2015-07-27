@@ -1,4 +1,5 @@
 from distutils.core import setup
+
 setup(
 	name = 'django-test-addons',
 	packages = ['test_addons'],
@@ -8,7 +9,7 @@ setup(
 	author_email = 'hspandher@outlook.com',
 	url = 'https://github.com/hspandher/django-test-utils',
 	download_url = 'https://github.com/hspandher/django-test-utils/tarball/0.1',
-	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j'],
+	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j', 'TDD', 'python'],
 	license = 'MIT',
     install_requires = [
         'django>1.6'
@@ -27,5 +28,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Software Development :: Testing',
+        'Topic :: Database',
     ],
 )
