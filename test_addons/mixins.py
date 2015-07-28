@@ -1,7 +1,6 @@
 # inbuild python imports
 
 # inbuilt django imports
-from django_redis import get_redis_connection
 from django.test import SimpleTestCase
 
 # third party imports
