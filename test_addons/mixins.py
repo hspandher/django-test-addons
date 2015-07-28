@@ -123,7 +123,7 @@ class _AssertNumQueries(object):
     def __init__(self, test_case, num_of_queries):
         self.test_case = test_case
         self.num_of_queries = num_of_queries
-        self.db = get_db()
+        self.db = mongoengine.connection.get_db()
 
     def __enter__(self):
         """ (_AssertNumQueries) -> (int)
