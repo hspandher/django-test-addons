@@ -29,8 +29,9 @@ The following packages are optional:
 
     * `Mongoengine (0.8.7)+ <http://mongoengine-odm.readthedocs.org/>`_ - Testing support for Mongo DB.
     * `Django Redis (3.8.2)+ <https://pypi.python.org/pypi/django-redis>`_ - Testing support Redis.
-    * `Py2neo (2.0.6)_ <https://pypi.python.org/pypi/py2neo>`_  - Testing support for Neo4j graph database.
+    * `Py2neo (2.0.6)+ <https://pypi.python.org/pypi/py2neo>`_  - Testing support for Neo4j graph database.
     * `Python Memcached (1.53)+ <https://pypi.python.org/pypi/python-memcached>`_  - Testing support for Memcache.
+    * `Django Rest Framework (3.0.5)+ <http://django-rest-framework.readthedocs.org/en/stable/>`_ - Testing support for Django Rest Framework Apis
 
 .. note:: Package may work perfectly for older versions than specified. It's just that it is not tested with them. So feel free to give it a try.
 
