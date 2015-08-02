@@ -1,3 +1,7 @@
+**Full Documentation:**
+    * `Read the docs <http://django-test-addons.readthedocs.org/en/latest/>`_
+    * `Python Hosted <https://pythonhosted.org/django-test-addons/>`_
+
 =========
 Tutorial
 =========
