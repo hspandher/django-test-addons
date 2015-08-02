@@ -11,14 +11,14 @@ for Mongodb, Redis, Neo4j, Memcache, Django Rest Framework APIs only. Support fo
 databases might be provided in future.
 
 Installation
---------------
+=============
 
 .. code-block:: console
 
     pip install django-test-addons
 
 Requirements
--------------
+=============
 
 Django test addons requires the following:
 
@@ -37,7 +37,7 @@ The following packages are optional:
 
 
 User Guide
------------
+===========
 
 .. toctree::
    :maxdepth: 3
@@ -47,13 +47,13 @@ User Guide
 
 
 Community
----------
+==========
 
 To get help with using MongoEngine, use the `Django test addons mailing list <https://groups.google.com/forum/#!forum/django-test-addons>`_ , raise an issue on `github <https://github.com/hspandher/django-test-addons>`_  or just mail me directly at *hspandher@outlook.com*.
 
 
 Contributing
-------------
+=============
 
 **Yes please!**  I am always looking for contributions, additions and improvements.
 Support for testing more databases is specifically required.
@@ -68,7 +68,7 @@ pull request.
 
 
 License
---------
+========
 The MIT License (MIT)
 
 Copyright (c) 2015, Hakampreet Singh Pandher
@@ -92,7 +92,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Indices and tables
--------------------
+===================
 
 * :ref:`genindex`
 * :ref:`search`
