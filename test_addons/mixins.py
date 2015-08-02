@@ -17,6 +17,11 @@ except ImportError:
     mongoengine = None
 
 try:
+    from django.core.cache import cache
+except ImportError:
+    cache = None
+
+try:
     from rest_framework.test import APIClient
 except ImportError:
     APIClient = None
@@ -59,6 +64,8 @@ class MongoTestMixin(object):
 
     """ Mixin to enforce use of mongodb, instead of relational database, in testing  """
 
+    CLEAR_CACHE = False
+
     @classmethod
     def setUpClass(cls):
         if not mongoengine:
@@ -68,6 +75,10 @@ class MongoTestMixin(object):
             cls.MONGO_DB_SETTINGS = settings.TEST_MONGO_DATABASE
         except:
             raise AttributeError("settings file has no attribute 'TEST_MONGO_SETTINGS'. Specify TEST_MONGO_SETTINGS in settings file. E.g: {'DB_NAME': 'test', 'HOST': ['localhost'], 'PORT': 27017}")
+
+        if cls.CLEAR_CACHE:
+            if not cache:
+                raise AttributeError("CACHE settings are not configured in settings, yet.")
 
         super(MongoTestMixin, cls).setUpClass()
 
@@ -97,6 +108,9 @@ class MongoTestMixin(object):
         connection = mongoengine.connection.get_connection()
         connection.drop_database(self.MONGO_DB_SETTINGS['db'])
         utils.disconnect()
+
+        if self.CLEAR_CACHE:
+            cache.clear()
 
     def assertNumQueries(self, num, func = None, *args, **kwargs):
         context_manager = _AssertNumQueries
