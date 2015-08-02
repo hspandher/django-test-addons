@@ -43,7 +43,7 @@ User Guide
    :maxdepth: 3
    :numbered:
 
-   tutorial
+   main
 
 
 Community
