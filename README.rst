@@ -1,3 +1,4 @@
+====================
 Full Documentation:
 ====================
     * `Read the docs <http://django-test-addons.readthedocs.org/en/latest/>`_
