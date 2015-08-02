@@ -7,8 +7,8 @@ Django Test Addons's documentation!
 Django Web Framework. By default, django provides support for relational databases
 only. Since no-sql database systems are being widely used in django community, testing
 support for them is vital. As of now, django test addons provides testing support
-for Mongodb, Redis, Neo4j, Memcache only. Support for more databases might be provided
-in future.
+for Mongodb, Redis, Neo4j, Memcache, Django Rest Framework APIs only. Support for more
+databases might be provided in future.
 
 Installation
 --------------
@@ -40,7 +40,7 @@ User Guide
 -----------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :numbered:
 
    tutorial
@@ -95,6 +95,5 @@ Indices and tables
 -------------------
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 

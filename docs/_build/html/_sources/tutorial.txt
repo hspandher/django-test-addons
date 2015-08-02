@@ -101,6 +101,25 @@ Just import *MongoTestCase* from test_addons, and inherit test class from it.
             pass
 
 
+Testing Memcache
+=================
+
+Just specify *CLEAR_CACHE=TRUE* in your test class, if you want to clear cache too(it could be Memcache or Redis or any other caching framework that works with django). You must have CACHES configured in your test settings for this to work.
+
+**Example**
+
+.. code-block:: python
+
+    import test_addons
+
+    class TestSomething(test_addons.MongoTestCase):
+
+        CLEAR_CACHE = True
+
+        def test_instantiation(self):
+            pass
+
+
 Testing Redis
 ==============
 
