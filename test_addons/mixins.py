@@ -163,7 +163,7 @@ class _AssertNumQueries(object):
         """
         ignore_query  = {
             "command.count": {"$ne": "system.profile"},
-            "ns": {"$ne": "test.system.indexes"}
+            "ns": {"$ne": "{0}.system.indexes".format(self.db.name)}
         }
 
         count = self.db.system.profile.find(ignore_query).count()
