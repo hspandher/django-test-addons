@@ -46,6 +46,15 @@ User Guide
    main
 
 
+=========
+Changelog
+=========
+
+Changes in version 0.3.5
+=======================
+- Fix APIClient bug. It was not working due to incorrect name error (use of self instead of cls)
+
+
 Community
 ==========
 

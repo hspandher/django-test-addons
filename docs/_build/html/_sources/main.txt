@@ -284,6 +284,15 @@ Facing Issues
 =============
 Make sure you have defined settings exactly as mentioned. If you still can't resolve the issue, you can use `Django test addons mailing list <https://groups.google.com/forum/#!forum/django-test-addons>`_ or raise an issue on `github <https://github.com/hspandher/django-test-addons>`_  or just mail me directly at *hspandher@outlook.com*
 
+
+=========
+Changelog
+=========
+
+Changes in 0.3.5
+=======================
+- Fix APIClient bug. It was not working due to incorrect name error
+
 ==========
 Community
 ==========
