@@ -295,7 +295,7 @@ class ApiTestMixin(object):
 
     @classmethod
     def setUpClass(cls):
-        if not self.client_class:
+        if not cls.client_class:
             raise ImportError('django rest framework is required to use API test cases.')
 
         super(ApiTestMixin, cls).setUpClass()
