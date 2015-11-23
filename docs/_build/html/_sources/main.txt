@@ -289,6 +289,10 @@ Make sure you have defined settings exactly as mentioned. If you still can't res
 Changelog
 =========
 
+Changes in version 0.3.6
+=======================
+- Updated pypi download url to the latest version (Minor update)
+
 Changes in 0.3.5
 =======================
 - Fix APIClient bug. It was not working due to incorrect name error
