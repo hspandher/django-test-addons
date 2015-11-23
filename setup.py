@@ -7,8 +7,8 @@ setup(
 	description = 'Library to provide support for testing multiple database system like Mongo, Redis, Neo4j along with django.',
 	author = 'Hakampreet Singh Pandher',
 	author_email = 'hspandher@outlook.com',
-	url = 'https://github.com/hspandher/django-test-utils',
-	download_url = 'https://github.com/hspandher/django-test-utils/tarball/0.3.6',
+	url = 'https://github.com/hspandher/django-test-addons',
+	download_url = 'https://github.com/hspandher/django-test-addons/tarball/0.3.6',
 	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j', 'TDD', 'python', 'memcache', 'django rest framework'],
 	license = 'MIT',
     install_requires = [
