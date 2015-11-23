@@ -3,12 +3,12 @@ from distutils.core import setup
 setup(
 	name = 'django-test-addons',
 	packages = ['test_addons'],
-	version = '0.3.5',
+	version = '0.3.6',
 	description = 'Library to provide support for testing multiple database system like Mongo, Redis, Neo4j along with django.',
 	author = 'Hakampreet Singh Pandher',
 	author_email = 'hspandher@outlook.com',
 	url = 'https://github.com/hspandher/django-test-utils',
-	download_url = 'https://github.com/hspandher/django-test-utils/tarball/0.1',
+	download_url = 'https://github.com/hspandher/django-test-utils/tarball/0.3.6',
 	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j', 'TDD', 'python', 'memcache', 'django rest framework'],
 	license = 'MIT',
     install_requires = [
