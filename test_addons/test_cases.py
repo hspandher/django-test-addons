@@ -8,8 +8,8 @@ from django.test import LiveServerTestCase
 # inter-app imports
 
 # local imports
-from . import mixins
-from .mixins import SimpleTestCase
+import mixins
+from mixins import SimpleTestCase
 
 
 class MongoTestCase(mixins.MongoTestMixin, SimpleTestCase):
