@@ -3,16 +3,16 @@ from distutils.core import setup
 setup(
 	name = 'django-test-addons',
 	packages = ['test_addons'],
-	version = '0.3.6',
+	version = '1.0',
 	description = 'Library to provide support for testing multiple database system like Mongo, Redis, Neo4j along with django.',
 	author = 'Hakampreet Singh Pandher',
 	author_email = 'hspandher@outlook.com',
 	url = 'https://github.com/hspandher/django-test-addons',
-	download_url = 'https://github.com/hspandher/django-test-addons/tarball/0.3.6',
-	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j', 'TDD', 'python', 'memcache', 'django rest framework'],
+	download_url = 'https://github.com/hspandher/django-test-addons/tarball/1.0',
+	keywords = ['testing', 'django', 'mongo', 'redis', 'neo4j', 'TDD', 'python', 'memcache', 'django rest framework', 'test case'],
 	license = 'MIT',
     install_requires = [
-        'django>1.6'
+        'django>1.5'
     ],
     extras_require = {
         'mongo_testing': ['mongoengine>=0.8.7'],
