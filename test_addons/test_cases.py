@@ -1,7 +1,7 @@
 # inbuild python imports
 
 # inbuilt django imports
-from django.test import LiveServerTestCase
+from django.test import LiveServerTestCase, SimpleTestCase
 
 # third party imports
 
@@ -9,7 +9,34 @@ from django.test import LiveServerTestCase
 
 # local imports
 from . import mixins
-from .mixins import SimpleTestCase
+
+
+class SimpleTestCase(SimpleTestCase):
+
+    _overridden_settings = None
+    _modified_settings = None
+
+    @classmethod
+    def setUpClass(cls):
+        super(SimpleTestCase, cls).setUpClass()
+
+        if cls._overridden_settings:
+            cls._cls_overridden_context = override_settings(**cls._overridden_settings)
+            cls._cls_overridden_context.enable()
+        if cls._modified_settings:
+            cls._cls_modified_context = modify_settings(cls._modified_settings)
+            cls._cls_modified_context.enable()
+
+    @classmethod
+    def tearDownClass(cls):
+        if hasattr(cls, '_cls_modified_context'):
+            cls._cls_modified_context.disable()
+            delattr(cls, '_cls_modified_context')
+        if hasattr(cls, '_cls_overridden_context'):
+            cls._cls_overridden_context.disable()
+            delattr(cls, '_cls_overridden_context')
+
+        super(SimpleTestCase, cls).tearDownClass()
 
 
 class MongoTestCase(mixins.MongoTestMixin, SimpleTestCase):
@@ -28,22 +55,22 @@ class Neo4jTestCase(mixins.Neo4jTestMixin, SimpleTestCase):
     pass
 
 
-class MongoNeo4jTestCase(mixins.MongoNeo4jTestMixin, mixins.SimpleTestCase):
+class MongoNeo4jTestCase(mixins.Neo4jTestMixin, mixins.MongoTestMixin, SimpleTestCase):
 
     pass
 
 
-class RedisTestCase(mixins.RedisTestMixin, mixins.SimpleTestCase):
+class RedisTestCase(mixins.RedisTestMixin, SimpleTestCase):
 
     pass
 
 
-class MongoRedisTestCase(mixins.MongoRedisTestMixin, mixins.SimpleTestCase):
+class MongoRedisTestCase(mixins.RedisTestMixin, mixins.MongoTestMixin, SimpleTestCase):
 
     pass
 
 
-class RedisMongoNeo4jTestCase(mixins.RedisMongoNeo4jTestMixin, mixins.SimpleTestCase):
+class RedisMongoNeo4jTestCase(mixins.Neo4jTestMixin, mixins.RedisTestMixin, mixins.MongoTestMixin, SimpleTestCase):
 
     pass
 

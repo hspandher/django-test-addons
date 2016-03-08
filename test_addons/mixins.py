@@ -1,7 +1,6 @@
 # inbuild python imports
 
 # inbuilt django imports
-from django.test import SimpleTestCase
 
 # third party imports
 from django.conf import settings
@@ -32,34 +31,6 @@ except ImportError:
     neo4j = None
 
 
-class SimpleTestCase(SimpleTestCase):
-
-    _overridden_settings = None
-    _modified_settings = None
-
-    @classmethod
-    def setUpClass(cls):
-        super(SimpleTestCase, cls).setUpClass()
-
-        if cls._overridden_settings:
-            cls._cls_overridden_context = override_settings(**cls._overridden_settings)
-            cls._cls_overridden_context.enable()
-        if cls._modified_settings:
-            cls._cls_modified_context = modify_settings(cls._modified_settings)
-            cls._cls_modified_context.enable()
-
-    @classmethod
-    def tearDownClass(cls):
-        if hasattr(cls, '_cls_modified_context'):
-            cls._cls_modified_context.disable()
-            delattr(cls, '_cls_modified_context')
-        if hasattr(cls, '_cls_overridden_context'):
-            cls._cls_overridden_context.disable()
-            delattr(cls, '_cls_overridden_context')
-
-        super(SimpleTestCase, cls).tearDownClass()
-
-
 class MongoTestMixin(object):
 
     """ Mixin to enforce use of mongodb, instead of relational database, in testing  """
@@ -85,26 +56,15 @@ class MongoTestMixin(object):
     def _pre_setup(self):
         """ (MongoTestMixin) -> (NoneType)
         create a new mongo connection.
-
-        Note:- It explicitly uses Class name to call methods, since the calling overriden
-        _setup_database and _teardown_database is not required behaviour, as it would
-        not work with other Test Mixins like Redis or Neo4j, which have their own _setup_database
-        and _teardown_database
         """
-        SimpleTestCase._pre_setup(self)
+        super(MongoTestMixin, self)._pre_setup()
 
-        MongoTestMixin._setup_database(self)
-
-    def _post_teardown(self):
-        SimpleTestCase._post_teardown(self)
-
-        MongoTestMixin._teardown_database(self)
-
-    def _setup_database(self):
-        utils.disconnect() # disconnect any existing connections built in settings
+        utils.disconnect()
         mongoengine.connection.connect(self.MONGO_DB_SETTINGS['db'], port = self.MONGO_DB_SETTINGS['port'])
 
-    def _teardown_database(self):
+    def _post_teardown(self):
+        super(MongoTestMixin, self)._post_teardown()
+
         connection = mongoengine.connection.get_connection()
         connection.drop_database(self.MONGO_DB_SETTINGS['db'])
         utils.disconnect()
@@ -198,18 +158,12 @@ class Neo4jTestMixin(object):
         super(Neo4jTestMixin, cls).setUpClass()
 
     def _pre_setup(self):
-        SimpleTestCase._pre_setup(self)
+        super(Neo4jTestMixin, self)._pre_setup()
 
-        Neo4jTestMixin._setup_database(self)
-
-    def _post_teardown(self):
-        Neo4jTestMixin._teardown_database(self)
-
-    def _setup_database(self):
         self.graph_db = neo4j.Graph(self.NEO4J_LINK)
 
-    def _teardown_database(self):
-        SimpleTestCase._post_teardown(self)
+    def _post_teardown(self):
+        super(Neo4jTestMixin, self)._post_teardown()
 
         query = '''
         START n = node(*)
@@ -234,59 +188,9 @@ class RedisTestMixin(object):
 
         super(RedisTestMixin, cls).setUpClass()
 
-    def _pre_setup(self):
-        SimpleTestCase._pre_setup(self)
-
-        RedisTestMixin._setup_database(self)
-
     def _post_teardown(self):
-        RedisTestMixin._teardown_database(self)
-
-    def _setup_database(self):
-        pass
-
-    def _teardown_database(self):
+        super(RedisTestMixin, self)._post_teardown()
         map(lambda connection: connection.flushdb(), self.redis_connections)
-
-
-class MongoNeo4jTestMixin(Neo4jTestMixin, MongoTestMixin):
-
-    """ Mixin to enforce use of mongodb, instead of relational database, in testing  """
-
-
-    def _pre_setup(self):
-        Neo4jTestMixin._pre_setup(self)
-        MongoTestMixin._pre_setup(self)
-
-    def _post_teardown(self):
-        Neo4jTestMixin._post_teardown(self)
-        MongoTestMixin._post_teardown(self)
-
-
-class MongoRedisTestMixin(RedisTestMixin, MongoTestMixin):
-
-    def _pre_setup(self):
-        MongoTestMixin._pre_setup(self)
-        RedisTestMixin._pre_setup(self)
-
-    def _post_teardown(self):
-        MongoTestMixin._post_teardown(self)
-        RedisTestMixin._post_teardown(self)
-
-
-class RedisMongoNeo4jTestMixin(RedisTestMixin, Neo4jTestMixin, MongoTestMixin):
-
-    """ Mixin to enforce use of mongodb, instead of relational database, in testing  """
-
-    def _pre_setup(self):
-        Neo4jTestMixin._pre_setup(self)
-        MongoTestMixin._pre_setup(self)
-        RedisTestMixin._pre_setup(self)
-
-    def _post_teardown(self):
-        Neo4jTestMixin._post_teardown(self)
-        MongoTestMixin._post_teardown(self)
-        RedisTestMixin._post_teardown(self)
 
 
 class ApiTestMixin(object):
