@@ -13,7 +13,7 @@ Requirements
 Django test addons requires the following:
 
     1. Python(2.7+)
-    2. Django(1.6, 1.7, 1.8)
+    2. Django(1.6, 1.7, 1.8, 1.9)
 
 The following packages are optional:
 
@@ -288,6 +288,10 @@ Make sure you have defined settings exactly as mentioned. If you still can't res
 =========
 Changelog
 =========
+
+Changes in version 1.0
+=======================
+- Support for Django 1.9 along with Python 3
 
 Changes in version 0.3.6
 =======================

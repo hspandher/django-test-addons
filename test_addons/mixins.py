@@ -45,7 +45,7 @@ class MongoTestMixin(object):
         try:
             cls.MONGO_DB_SETTINGS = settings.TEST_MONGO_DATABASE
         except:
-            raise AttributeError("settings file has no attribute 'TEST_MONGO_SETTINGS'. Specify TEST_MONGO_SETTINGS in settings file. E.g: {'DB_NAME': 'test', 'HOST': ['localhost'], 'PORT': 27017}")
+            raise AttributeError("settings file has no attribute 'TEST_MONGO_DATABASE'. Specify TEST_MONGO_DATABASE in settings file. E.g: {'DB_NAME': 'test', 'HOST': ['localhost'], 'PORT': 27017}")
 
         if cls.CLEAR_CACHE:
             if not cache:
