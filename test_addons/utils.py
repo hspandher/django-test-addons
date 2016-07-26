@@ -68,7 +68,7 @@ class CopyLargeFileMixin(ClearFileStorageMixin):
             return super(CopyLargeFileMixin, self).tearDown()
 
 	super(CopyLargeFileMixin, self).tearDown()
-        shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
+	shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
 
     @classmethod
     def tearDownAll(cls):
@@ -76,7 +76,7 @@ class CopyLargeFileMixin(ClearFileStorageMixin):
 	    return super(CopyLargeFileMixin, cls).tearDownAll()
         
 	super(CopyLargeFileMixin, cls).tearDownAll()
-        shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
+	shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
 
 
 class ModifySessionMixin(object):
