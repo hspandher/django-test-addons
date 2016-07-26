@@ -64,12 +64,18 @@ class CopyLargeFileMixin(ClearFileStorageMixin):
     TEST_STORAGE_DIRECTORY = None
 
     def tearDown(self):
-        super(CopyLargeFileMixin, self).tearDown()
+	if not self.STORED_FILE_PATH:
+            return super(CopyLargeFileMixin, self).tearDown()
+
+	super(CopyLargeFileMixin, self).tearDown()
         shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
 
     @classmethod
     def tearDownAll(cls):
-        super(CopyLargeFileMixin, self).tearDownAll()
+	if not self.STORED_FILE_PATH:
+	    return super(CopyLargeFileMixin, cls).tearDownAll()
+        
+	super(CopyLargeFileMixin, cls).tearDownAll()
         shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
 
 
