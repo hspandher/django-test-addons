@@ -49,6 +49,36 @@ class ClearFileStorageMixin(object):
             os.makedirs(self.TEST_STORAGE_DIRECTORY)
 
 
+class CopyLargeFileMixin(ClearFileStorageMixin):
+    """
+    This is a mixin inheriting ClearFileStorageMixin to
+    copy the larger files which you cannot keep inside
+    a github project because of size constraints, for eg.
+    Large video files which you might need for testing.
+    A better approach is to copy the file each time you
+    run the test from your computer to the TEST_STORAGE_DIRECTORY
+    and delete it after each test run.
+    """
+
+    STORED_FILE_PATH = None
+    TEST_STORAGE_DIRECTORY = None
+
+    def tearDown(self):
+	if not self.STORED_FILE_PATH:
+            return super(CopyLargeFileMixin, self).tearDown()
+
+	super(CopyLargeFileMixin, self).tearDown()
+	shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
+
+    @classmethod
+    def tearDownAll(cls):
+	if not self.STORED_FILE_PATH:
+	    return super(CopyLargeFileMixin, cls).tearDownAll()
+        
+	super(CopyLargeFileMixin, cls).tearDownAll()
+	shutil.copy(self.STORED_FILE_PATH, self.TEST_STORAGE_DIRECTORY)
+
+
 class ModifySessionMixin(object):
 
     def create_session(self):
