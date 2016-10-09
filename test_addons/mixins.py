@@ -102,7 +102,7 @@ class MongoTestMixin(object):
 
     def _setup_database(self):
         utils.disconnect() # disconnect any existing connections built in settings
-        mongoengine.connection.connect(self.MONGO_DB_SETTINGS['db'], port = self.MONGO_DB_SETTINGS['port'])
+        mongoengine.connection.connect(self.MONGO_DB_SETTINGS['db'], host = self.MONGO_DB_SETTINGS['host'], port = self.MONGO_DB_SETTINGS['port'])
 
     def _teardown_database(self):
         connection = mongoengine.connection.get_connection()
