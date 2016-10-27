@@ -226,11 +226,11 @@ class RedisTestMixin(object):
     def setUpClass(cls):
         try:
             from django_redis import get_redis_connection
-            cls.redis_connections = map(lambda connection_name: get_redis_connection(connection_name), settings.TEST_CACHES.keys())
+            cls.redis_connections = map(lambda connection_name: get_redis_connection(connection_name), settings.CACHES.keys())
         except ImportError as exc:
             raise ImportError("django_redis must be installed to use RedisTestCase. Exception details:- {0}".format(repr(exc)))
         except AttributeError as exc:
-            raise AttributeError("settings file doesn't have redis configuration defined. Define TEST_CACHES in test settings file. Exception details:- {0}".format(repr(exc)))
+            raise AttributeError("settings file doesn't have redis configuration defined. Define CACHES in test settings file. Exception details:- {0}".format(repr(exc)))
 
         super(RedisTestMixin, cls).setUpClass()
 
