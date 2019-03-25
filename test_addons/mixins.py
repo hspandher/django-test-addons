@@ -180,7 +180,7 @@ class RedisTestMixin(object):
     def setUpClass(cls):
         try:
             from django_redis import get_redis_connection
-            cls.redis_connections = map(lambda connection_name: get_redis_connection(connection_name), settings.CACHES.keys())
+            cls.redis_connections = [get_redis_connection(connection_name) for connection_name in list(settings.CACHES.keys())]
         except ImportError as exc:
             raise ImportError("django_redis must be installed to use RedisTestCase. Exception details:- {0}".format(repr(exc)))
         except AttributeError as exc:
@@ -190,7 +190,7 @@ class RedisTestMixin(object):
 
     def _post_teardown(self):
         super(RedisTestMixin, self)._post_teardown()
-        map(lambda connection: connection.flushdb(), self.redis_connections)
+        [connection.flushdb() for connection in self.redis_connections]
 
 
 class ApiTestMixin(object):
